@@ -18,7 +18,7 @@ bool isSubTreeLesser(node* root, int value){
 }
 bool isSubTreeGreater(node* root, int value){
     if(root == NULL) return true;
-    if(root-> data <= value && isSubTreeGreater(root-> left, value) && isSubTreeGreater(root->right, value)) return true;
+    if(root-> data >= value && isSubTreeGreater(root-> left, value) && isSubTreeGreater(root->right, value)) return true;
     else return false;
 }
 
