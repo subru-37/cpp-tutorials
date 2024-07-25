@@ -45,19 +45,23 @@ void bfs(vector<vector<int> >& adjList, int startNode, vector<bool>& visited){
     }
 }
 // adjacent matrix representation
-void dfs(vector<vector<int>>& adjList, vector<int>& vis, int i){
-    vis[i] = 1;
+void dfsmatrix(vector<vector<int>>& adjList, vector<bool>& vis, int i){
+    cout<<i<<" ";
+    vis[i] = true;
     for(int j=0;j<adjList.size(); j++){
         if(!vis[j] && adjList[i][j] == 1)
-            dfs(adjList, vis, j);
+            dfsmatrix(adjList, vis, j);
     }
 }
 
 // adjacent list representation 
-void dfs( vector<vector<int>>&adj_list, vector<int>&vis,int i){
-    vis[i]=1;
+void dfslist( vector<vector<int>>&adj_list, vector<bool>&vis,int i){
+    cout<<i<<" ";
+    vis[i] = true;
     for(auto neighbor:adj_list[i]){
-        if(!vis[neighbor])dfs(adj_list,vis,neighbor);
+        if(!vis[neighbor])
+            dfslist(adj_list,vis,neighbor);
+            // cout<<neighbor<<endl;
     }
 }
 
@@ -121,7 +125,8 @@ int main(){
     // Perform BFS traversal starting from vertex 0
     cout << "Breadth First Traversal starting from vertex "
             "0: ";
-    bfs(adjList, 1, visited);
+    int start = 1;
+    dfslist(adjList, visited, start);
 
     return 0;
 }
