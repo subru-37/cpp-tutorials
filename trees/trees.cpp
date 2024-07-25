@@ -116,7 +116,7 @@ void inOrder(node* root){
 }
 
 void postOrder(node* root){
-    //left, root, right - preorder
+    //left, right, root - preorder
     if(root == NULL) return;
     preOrder(root->left);
     preOrder(root->right);
