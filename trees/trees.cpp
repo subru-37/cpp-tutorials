@@ -23,14 +23,35 @@ node* createNode(int x){
     return new_node;
 }
 
-
+//bst
 bool search(node* root, int data){
     if(root == NULL) return false;
     else if(data == root-> data) return true;
     else if(data >= root->data) return search(root->right, data); 
     else return search(root->left, data);
 }
-
+// Function to traverse the tree in preorder
+// and check if the given node exists in it
+// binary tree
+bool ifNodeExists(struct node* root, int key)
+{
+    if (root == NULL)
+        return false;
+ 
+    if (root->data == key)
+        return true;
+ 
+    /* then recur on left subtree */
+    bool res1 = ifNodeExists(root->left, key);
+    // root found, no need to look further
+    if(res1) return true; 
+ 
+    /* root is not found in left, 
+    so recur on right subtree */
+    bool res2 = ifNodeExists(root->right, key);
+ 
+    return res2;
+}
 
 node* insertNode(node* root, int data){
     if(root == NULL){
