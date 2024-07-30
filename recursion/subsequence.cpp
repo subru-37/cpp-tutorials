@@ -18,22 +18,23 @@ void subsequence(vector<int>& myarray, int index, vector<int>& basearray){
 }
 
 void subsequenceSum(vector<int>& myarray, int index, vector<int>& basearray, int target, int current){
-    if(index == myarray.size()){
-        // if(current == target ){
-            cout<<"Target sum "<<target<<": "<<endl;
+    if(index >= basearray.size()){
+        if(current == target ){
+            cout<<"Target sum "<<current<<": "<<endl;
             for(auto x: myarray){
                 cout<<x<<" ";
             }
             cout<<endl;
-            return;
-        // }
+        }
+        return;
     }
+    // cout<<basearray[0]<<endl;
     myarray.push_back(basearray[index]);
-    int mysum = current + basearray[index];
-    subsequenceSum(myarray, index + 1, basearray, target, mysum);  // take
+    current += basearray[index];
+    subsequenceSum(myarray, index + 1, basearray, target, current);  // take
     myarray.pop_back();
-    mysum = current - basearray[index];
-    subsequenceSum(myarray, index + 1, basearray, target, mysum); // not take
+    current -= basearray[index];
+    subsequenceSum(myarray, index + 1, basearray, target, current); // not take
 }
 
 int main(){
