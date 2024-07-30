@@ -17,10 +17,10 @@ void subsequence(vector<int>& myarray, int index, vector<int>& basearray){
     subsequence(myarray, index + 1, basearray); // not take
 }
 
-void subsequenceSum(vector<int>& myarray, int index, vector<int>& basearray){
+void subsequenceSum(vector<int>& myarray, int index, vector<int>& basearray, int target, int current){
     if(index == myarray.size()){
         // if(current == target ){
-            // cout<<"Target sum "<<target<<": "<<endl;
+            cout<<"Target sum "<<target<<": "<<endl;
             for(auto x: myarray){
                 cout<<x<<" ";
             }
@@ -29,11 +29,11 @@ void subsequenceSum(vector<int>& myarray, int index, vector<int>& basearray){
         // }
     }
     myarray.push_back(basearray[index]);
-    // int mysum = current + basearray[index];
-    subsequenceSum(myarray, index + 1, basearray);  // take
+    int mysum = current + basearray[index];
+    subsequenceSum(myarray, index + 1, basearray, target, mysum);  // take
     myarray.pop_back();
-    // mysum = current - basearray[index];
-    subsequenceSum(myarray, index + 1, basearray); // not take
+    mysum = current - basearray[index];
+    subsequenceSum(myarray, index + 1, basearray, target, mysum); // not take
 }
 
 int main(){
@@ -42,7 +42,7 @@ int main(){
     // int target = 10;
     // int temp = 0;
     // subsequence(temp, 0, myarray);
-    subsequenceSum(temp, 0, myarray);
+    subsequenceSum(temp, 0, myarray, 10, 0);
 
     return 0;
 }
