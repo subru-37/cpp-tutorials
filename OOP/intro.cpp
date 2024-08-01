@@ -69,7 +69,7 @@ class Employee: public AbstractE{
 
 // private can't be accessed outside of my class
 // public can be accessed outside of class
-// protected variables can be access by derived or child classes
+// protected variables can be accessed by derived or child classes
 
 // Constructors have same Name as class, do not have any return type, not even void, and it must be public
 

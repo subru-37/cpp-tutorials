@@ -61,8 +61,28 @@ class Solution{
 
     // tabulation method 
     // bottom up 
-    int efficient(vector<vector<int>>& points){
-        
+    int efficient(vector<vector<int>>& points, int n){
+        vector<vector<int>> my2dp(n, vector<int>(4,-1));
+        // base conditions 
+        my2dp[0][0] = max(points[0][1], points[0][2]);
+        my2dp[0][1] = max(points[0][0], points[0][2]);
+        my2dp[0][2] = max(points[0][0], points[0][1]);
+        my2dp[0][3] = max(points[0][0], max(points[0][1], points[0][2]));
+        int current = 0;
+        for(int day = 1; day<n; day++){ // days go from 1 to n - 1 (both included)
+            for(int last = 0; last<4; last++){ // previous task can range from 0 to 3 (both included, if it is 3, then no task have been done) 
+                // for(int i = 0; i<)
+                my2dp[day][last] = 0;
+                current = 0;
+                for(int task = 0; task<3; task++){ // calc current point based on previoud task and previous point
+                    if(task!=last){
+                        current = points[day][task] + points[day - 1][task];
+                        my2dp[day][last] = max(my2dp[day][last], current);
+                    }
+                }
+            }
+        }
+        return my2dp[n-1][3];
     }
     int ninjaTraining(int n, vector<vector<int>>& points){
         vector<vector<int>> my2dp(n, vector<int>(4,-1));
